@@ -1,0 +1,29 @@
+﻿@{
+    string dataOrigin = Url.Content("~/Products/GetAllProducts");
+}
+<head>
+    <link href="~/Content/datatables.min.css" rel="stylesheet" />
+</head>
+<body>
+    <h1> WELCOME </h1>
+    <input type="button" value="Show Products" onclick="getProducts()" />
+    <table id="ProductsContext" class="display"></table>
+</body>
+
+<script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="~/js/DataTable.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let productsContext = document.getElementById("ProductsContext");
+    const dataTable = new DataTable("@dataOrigin", productsContext);
+    function getProducts() {
+        dataTable.fillContext();
+        setDataTable();
+    }
+    function setDataTable() {
+        console.log(dataTable);
+        $(document).ready(function () {
+            $('#ProductsContext').DataTable();
+        });
+    }
+</script>
